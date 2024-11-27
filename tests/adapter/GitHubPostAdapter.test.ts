@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { expect, test } from "vitest";
 import { GitHubFileMetadataAdapter } from "@/lib/adapter/GitHubFileMetadataAdapter";
 

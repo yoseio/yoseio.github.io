@@ -1,3 +1,4 @@
+import { injectable } from "tsyringe";
 import { unified } from "unified";
 import remarkExtractFrontmatter from "remark-extract-frontmatter";
 import remarkFrontmatter from "remark-frontmatter";
@@ -5,10 +6,11 @@ import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
 import YAML from "yaml";
 
-import { FileMetadata } from "@/lib/model/FileMetadata";
-import { PostMetadata } from "@/lib/model/PostMetadata";
-import { GetPostMetadataPort } from "@/lib/port/GetPostMetadataPort";
+import { type FileMetadata } from "@/lib/model/FileMetadata";
+import { type PostMetadata } from "@/lib/model/PostMetadata";
+import { type GetPostMetadataPort } from "@/lib/port/GetPostMetadataPort";
 
+@injectable()
 export class MarkdownPostMetadataAdapter implements GetPostMetadataPort {
   async getPostMetadata(data: FileMetadata): Promise<PostMetadata> {
     const processor = unified()

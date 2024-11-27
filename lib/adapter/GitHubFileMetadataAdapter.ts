@@ -1,9 +1,11 @@
-import { graphql } from "@octokit/graphql";
 import { Blob, Commit, Repository } from "@octokit/graphql-schema";
+import { graphql } from "@octokit/graphql";
+import { injectable } from "tsyringe";
 
-import { FileMetadata } from "@/lib/model/FileMetadata";
-import { GetFileMetadataPort } from "@/lib/port/GetFileMetadataPort";
+import { type FileMetadata } from "@/lib/model/FileMetadata";
+import { type GetFileMetadataPort } from "@/lib/port/GetFileMetadataPort";
 
+@injectable()
 export class GitHubFileMetadataAdapter implements GetFileMetadataPort {
   private graphqlWithAuth: typeof graphql;
   // TODO: get values from environment variables

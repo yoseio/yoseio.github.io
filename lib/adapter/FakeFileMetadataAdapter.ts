@@ -1,10 +1,12 @@
 import { faker } from "@faker-js/faker";
+import { injectable } from "tsyringe";
 import YAML from "yaml";
 
-import { FileMetadata } from "@/lib/model/FileMetadata";
-import { PostMetadata } from "@/lib/model/PostMetadata";
-import { GetFileMetadataPort } from "@/lib/port/GetFileMetadataPort";
+import { type FileMetadata } from "@/lib/model/FileMetadata";
+import { type PostMetadata } from "@/lib/model/PostMetadata";
+import { type GetFileMetadataPort } from "@/lib/port/GetFileMetadataPort";
 
+@injectable()
 export class FakeFileMetadataAdapter implements GetFileMetadataPort {
   constructor(private postMetadata?: PostMetadata) {}
 
