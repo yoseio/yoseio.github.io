@@ -9,6 +9,7 @@ const ID = "2022-11-alive";
 
 test("getPostMetadata", async () => {
   const POST_METADATA = {
+    headline: faker.lorem.words(),
     draft: faker.datatype.boolean(),
   };
   const FILE_METADATA = await new FakeFileMetadataAdapter(

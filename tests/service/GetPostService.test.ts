@@ -20,5 +20,6 @@ test("getPost", async () => {
   const getPostService = container.resolve(GetPostService);
   const post = await getPostService.getPost(ID);
 
-  expect(post.metadata.post.draft).toBeTruthy();
+  expect(post.headline).toEqual("生きる");
+  expect(post.dateCreated).toEqual(new Date("2024-11-26T09:29:03.000Z"));
 });

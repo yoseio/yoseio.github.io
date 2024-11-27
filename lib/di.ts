@@ -1,5 +1,4 @@
 import "reflect-metadata";
-import { expect, test } from "vitest";
 import { container } from "tsyringe";
 
 import { GitHubFileMetadataAdapter } from "@/lib/adapter/GitHubFileMetadataAdapter";
@@ -22,9 +21,4 @@ container.register("ListPostsPort", {
 container.register("GetPostService", GetPostService);
 container.register("GetPostsService", GetPostsService);
 
-test("getPosts", async () => {
-  const getPostsService = container.resolve(GetPostsService);
-  const posts = await getPostsService.getPosts();
-
-  expect(posts[0].dateCreated).toEqual(new Date("2024-11-26T09:29:03.000Z"));
-});
+export { container };

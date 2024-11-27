@@ -13,6 +13,6 @@ test("getFileMetadata", async () => {
     new Date("2024-11-26T09:29:03.000Z"),
   );
   expect(fileMetadata.dateModified).toEqual(
-    new Date("2024-11-26T16:43:36.000Z"),
+    new Date("2024-11-27T10:55:50.000Z"),
   );
 });

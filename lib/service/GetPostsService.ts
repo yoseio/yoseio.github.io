@@ -1,4 +1,5 @@
 import { injectable, inject } from "tsyringe";
+import { compareDesc } from "date-fns";
 
 import { type Post } from "@/lib/model/Post";
 import { type ListPostsPort } from "@/lib/port/ListPostsPort";
@@ -19,5 +20,24 @@ export class GetPostsService {
       ids.map((id) => this.getPostService.getPost(id)),
     );
     return posts;
+  }
+
+  async getGroupedPosts(): Promise<Map<number, Post[]>> {
+    const posts = await this.getPosts();
+    const group = new Map<number, Post[]>();
+
+    posts.forEach((post) => {
+      const year = post.dateCreated.getFullYear();
+      if (!group.has(year)) {
+        group.set(year, []);
+      }
+      group.get(year)?.push(post);
+    });
+
+    group.forEach((posts, _year) => {
+      posts.sort((a, b) => compareDesc(a.dateCreated, b.dateCreated));
+    });
+
+    return group;
   }
 }
