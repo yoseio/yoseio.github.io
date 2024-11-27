@@ -22,7 +22,7 @@ export class GetPostsService {
     return posts;
   }
 
-  async getGroupedPosts(): Promise<Map<number, Post[]>> {
+  async getGroupedPosts(): Promise<Record<number, Post[]>> {
     const posts = await this.getPosts();
     const group = new Map<number, Post[]>();
 
@@ -38,6 +38,6 @@ export class GetPostsService {
       posts.sort((a, b) => compareDesc(a.dateCreated, b.dateCreated));
     });
 
-    return group;
+    return Object.fromEntries(group.entries());
   }
 }
