@@ -1,5 +1,15 @@
 import { container } from "@/lib/di";
 import { GetPostService } from "@/lib/service/GetPostService";
+import { GetPostsService } from "@/lib/service/GetPostsService";
+
+export async function generateStaticParams() {
+  const service = container.resolve(GetPostsService);
+  const posts = await service.getPosts();
+
+  return posts.map((post) => ({
+    id: post.identifier,
+  }));
+}
 
 export async function GET(
   _req: Request,
