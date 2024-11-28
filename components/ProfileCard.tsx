@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { GitHubIcon } from "@/components/icons/GitHubIcon";
 import { TwitterIcon } from "@/components/icons/TwitterIcon";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -21,18 +19,20 @@ export function ProfileCard() {
         <div className="flex flex-col">
           <h3 className="font-bold">{name}</h3>
           <div className="flex items-center gap-2 mt-2">
-            <Link
+            <a
+              target="_blank"
               href={twitter}
               className="text-muted-foreground hover:text-primary"
             >
               <TwitterIcon className="w-5 h-5" />
-            </Link>
-            <Link
+            </a>
+            <a
+              target="_blank"
               href={github}
               className="text-muted-foreground hover:text-primary"
             >
               <GitHubIcon className="w-5 h-5" />
-            </Link>
+            </a>
           </div>
         </div>
       </CardContent>

@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import { compileMDX } from "next-mdx-remote/rsc";
+import { format } from "date-fns";
 
 import { GetPostService } from "@/lib/service/GetPostService";
 import { GetPostsService } from "@/lib/service/GetPostsService";
@@ -28,5 +29,12 @@ export default async function PostPage({
     options: { parseFrontmatter: true },
   });
 
-  return <article className="prose">{content}</article>;
+  return (
+    <>
+      <p className="text-muted-foreground my-4">
+        Published on {format(post.dateCreated, "MMM Qo, yyyy")}
+      </p>
+      <article className="prose">{content}</article>
+    </>
+  );
 }
