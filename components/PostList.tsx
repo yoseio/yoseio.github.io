@@ -47,7 +47,10 @@ export function PostListItem(props: PostListItemProps) {
       <span className="flex-none text-gray-600 w-24 inline-block text-right mr-4 font-mono">
         {format(props.post.dateCreated, "MM/dd")}
       </span>
-      <Link href="#" className="flex-1 text-blue-600 truncate">
+      <Link
+        href={`/posts/${props.post.identifier}`}
+        className="flex-1 text-blue-600 truncate"
+      >
         {props.post.headline}
       </Link>
     </li>
