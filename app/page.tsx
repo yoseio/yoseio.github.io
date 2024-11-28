@@ -1,14 +1,13 @@
+import "reflect-metadata";
+
 import { PostGroupedList } from "@/components/PostList";
 import { ProfileCard } from "@/components/ProfileCard";
-import { fetchApi } from "@/lib/fetchApi";
-import { Post } from "@/lib/model/Post";
+import { GetPostsService } from "@/lib/service/GetPostsService";
+import { container } from "@/lib/di";
 
 export default async function Home() {
-  const res = await fetchApi("/api/posts");
-  const data = (await res.json()) as Record<number, Post[]>;
-  const posts = new Map<number, Post[]>(
-    Object.entries(data).map(([key, value]) => [Number(key), value]),
-  );
+  const service = container.resolve(GetPostsService);
+  const posts = await service.getGroupedPosts();
 
   return (
     <>

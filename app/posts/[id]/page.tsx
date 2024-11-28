@@ -1,9 +1,9 @@
+import "reflect-metadata";
 import { compileMDX } from "next-mdx-remote/rsc";
 
-import { container } from "@/lib/di";
-import { fetchApi } from "@/lib/fetchApi";
+import { GetPostService } from "@/lib/service/GetPostService";
 import { GetPostsService } from "@/lib/service/GetPostsService";
-import { Post } from "@/lib/model/Post";
+import { container } from "@/lib/di";
 
 export async function generateStaticParams() {
   const service = container.resolve(GetPostsService);
@@ -20,8 +20,8 @@ export default async function PostPage({
   params: Promise<{ id: string }>;
 }) {
   const id = (await params).id;
-  const res = await fetchApi(`/api/posts/${id}`);
-  const post = (await res.json()) as Post;
+  const service = container.resolve(GetPostService);
+  const post = await service.getPost(id);
 
   const { content } = await compileMDX({
     source: post.articleBody,
